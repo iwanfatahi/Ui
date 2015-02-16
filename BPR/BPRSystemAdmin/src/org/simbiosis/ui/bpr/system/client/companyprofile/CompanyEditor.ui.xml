@@ -1,0 +1,66 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:ScrollPanel>
+		<g:VerticalPanel styleName="fullbox">
+			<g:HTMLPanel styleName="header1">
+				<div>DATA BPRS</div>
+			</g:HTMLPanel>
+			<g:HTMLPanel styleName="headerspacer">
+				<div></div>
+			</g:HTMLPanel>
+			<g:HorizontalPanel styleName="widgetbox">
+				<g:HTMLPanel styleName="fullbox">
+					<table class="fullbox">
+						<tr>
+							<td class="halfbox">
+								<div class="fieldtitle">Nama</div>
+								<div class="fieldlabel">PT BPRS KARYA MUGI SENTOSA</div>
+								<div class="fieldtitle">Alamat</div>
+								<div class="fieldlabel">JL. KEDIRI I NO 188</div>
+								<div class="fieldtitle">Kota, kode pos</div>
+								<div class="fieldlabel">DEPOK 12345</div>
+								<div class="fieldtitle">Propinsi</div>
+								<div class="fieldlabel">JAWA BARAT</div>
+								<div class="fieldtitle">Nomer telpon</div>
+								<div class="fieldlabel">-</div>
+							</td>
+						</tr>
+					</table>
+				</g:HTMLPanel>
+			</g:HorizontalPanel>
+			<g:HTMLPanel styleName="widgetboxspacer">
+				<div></div>
+			</g:HTMLPanel>
+			<g:HTMLPanel styleName="header1">
+				<div>DATA LAPORAN BI</div>
+			</g:HTMLPanel>
+			<g:HTMLPanel styleName="headerspacer">
+				<div></div>
+			</g:HTMLPanel>
+			<g:HorizontalPanel styleName="widgetbox">
+				<g:HTMLPanel styleName="fullbox">
+					<table class="fullbox">
+						<tr>
+							<td class="halfbox">
+								<div class="fieldtitle">Kode BI</div>
+								<div class="fieldlabel">6613100</div>
+								<div class="fieldtitle">Direktur</div>
+								<div class="fieldlabel">DIDIK SUPARDANA</div>
+								<div class="fieldtitle">Penanggung jawab laporan</div>
+								<div class="fieldlabel">SULISTIYANTINI</div>
+							</td>
+						</tr>
+					</table>
+				</g:HTMLPanel>
+			</g:HorizontalPanel>
+			<g:HTMLPanel styleName="widgetboxspacer">
+				<div></div>
+			</g:HTMLPanel>
+			<g:Button styleName="fieldbigbutton" ui:field="btnChange">Rubah</g:Button>
+		</g:VerticalPanel>
+	</g:ScrollPanel>
+</ui:UiBinder> 

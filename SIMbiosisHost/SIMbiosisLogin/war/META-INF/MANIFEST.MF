@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Dependencies: com.google.gwt,org.jboss.resteasy.resteasy-jaxrs,org.codehaus.jackson.jackson-core-asl,org.codehaus.jackson.jackson-mapper-asl

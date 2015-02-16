@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:edv="urn:import:org.simbiosis.ui.gwt.client.editor">
+	<ui:style>
+	
+	</ui:style>
+	<g:TabLayoutPanel barUnit='PX' barHeight='40' ui:field="tlpCompanyProfile">
+		<g:tab>
+			<g:header size='7'>Informasi bank</g:header>
+			<edv:ViewerEditorForm ui:field="vefCompany" height="100%"/>
+		</g:tab>
+		<g:tab>
+			<g:header size='7'>Kantor cabang</g:header>
+			<edv:ViewerEditorForm ui:field="vefBranch" height="100%"/>
+		</g:tab>
+		<g:tab>
+			<g:header size='7'>Kantor kas</g:header>
+			<edv:ViewerEditorForm ui:field="vefSubBranch" height="100%"/>
+		</g:tab>
+	</g:TabLayoutPanel>
+
+</ui:UiBinder> 

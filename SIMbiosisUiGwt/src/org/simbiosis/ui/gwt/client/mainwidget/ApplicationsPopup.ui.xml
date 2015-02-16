@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:VerticalPanel styleName="callOutOuter">
+		<g:HTML>
+			<span class="callOutAppArrow">&nbsp;</span>
+		</g:HTML>
+		<g:VerticalPanel ui:field="callOutPanel" styleName="callOutPanel">
+			<g:VerticalPanel styleName="callOutHeader">
+				<g:Label styleName="callOutTitle" >Aplikasi</g:Label>
+			</g:VerticalPanel>
+			<g:Label styleName="callOutMenuItem">Pembiayaan</g:Label>
+			<g:Label styleName="callOutMenuItem">Laporan</g:Label>
+		</g:VerticalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 

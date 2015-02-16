@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:DockLayoutPanel unit="PX">
+		<g:north size="50">
+			<g:HorizontalPanel styleName="headerMain">
+				<g:cell verticalAlignment="middle">
+					<g:HTMLPanel styleName="headerLogo">
+						<em class="headerLogoBig">SIM</em>biosis
+					</g:HTMLPanel>
+				</g:cell>
+				<g:cell width="100%" verticalAlignment="middle">
+					<g:Label ui:field="appPath" styleName="headerAppPath" />
+				</g:cell>
+				<g:cell verticalAlignment="middle" styleName="headerConfig">
+					<g:HTMLPanel styleName="headerSpace">
+						<g:Button ui:field="applications" styleName="headerConfigButton">
+							<i class="fa fa-bars fa-fw" />
+						</g:Button>
+						<g:Button ui:field="preferences" styleName="headerConfigButton">
+							<i class="fa fa-gear fa-fw" />
+						</g:Button>
+						&nbsp;
+					</g:HTMLPanel>
+				</g:cell>
+			</g:HorizontalPanel>
+		</g:north>
+		<g:center>
+			<g:DockLayoutPanel ui:field="sidebarParentPanel"
+				unit="PX">
+				<g:west size="220">
+					<g:VerticalPanel ui:field="sidebarPanel" styleName="sidebarMain" />
+				</g:west>
+				<g:center>
+					<g:SimpleLayoutPanel ui:field="appPanel"/>
+				</g:center>
+			</g:DockLayoutPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

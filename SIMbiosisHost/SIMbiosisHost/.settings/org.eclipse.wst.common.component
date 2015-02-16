@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SIMbiosisHost">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SIMbiosisLogin.war" deploy-path="/" handle="module:/resource/SIMbiosisLogin/SIMbiosisLogin">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SIMbiosisLanding.war" deploy-path="/" handle="module:/resource/SIMbiosisLanding/SIMbiosisLanding">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BPRSystemAdmin.war" deploy-path="/" handle="module:/resource/BPRSystemAdmin/BPRSystemAdmin">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

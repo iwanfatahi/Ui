@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HorizontalPanel width="100%" height="32px"
+		styleName="sidebarNoborder">
+		<g:cell height="32px" verticalAlignment="top">
+			<g:Button ui:field="switchCollapse" styleName="sidebarCollapseButton">
+				<i class="fa fa-list fa-fw" />
+			</g:Button>
+		</g:cell>
+	</g:HorizontalPanel>
+</ui:UiBinder> 

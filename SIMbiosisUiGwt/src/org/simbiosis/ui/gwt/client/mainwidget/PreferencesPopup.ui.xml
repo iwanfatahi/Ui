@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:VerticalPanel styleName="callOutOuter">
+		<g:HTML>
+			<span class="callOutArrow">&nbsp;</span>
+		</g:HTML>
+		<g:VerticalPanel ui:field="callOutPanel" styleName="callOutPanel">
+			<g:VerticalPanel styleName="callOutHeader">
+			    <g:HorizontalPanel>
+			        <g:HTML styleName="callOutIcon"><i class="fa fa-user fa-3x" /></g:HTML>
+					<g:VerticalPanel styleName="callOutHeader">
+						<g:Label ui:field="userName" styleName="callOutTitle" />
+						<g:Label ui:field="userCompany" styleName="callOutSubtitle" />
+					</g:VerticalPanel>
+				</g:HorizontalPanel>
+			</g:VerticalPanel>
+			<g:Label ui:field="changePassword" styleName="callOutMenuItem">Ganti kata kunci</g:Label>
+			<g:Label ui:field="editFastMenu" styleName="callOutMenuItem">Edit menu cepat</g:Label>
+			<g:Label ui:field="logout" styleName="callOutMenuItem">Keluar</g:Label>
+		</g:VerticalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 
