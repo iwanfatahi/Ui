@@ -14,8 +14,8 @@ public abstract class ViewerForm<D> extends Composite {
 	public void setParent(ViewerEditorForm<D> parent) {
 		this.parent = parent;
 	}
-	
-	public void edit(){
+
+	public void edit() {
 		parent.edit();
 	}
 }

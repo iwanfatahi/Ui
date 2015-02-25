@@ -2,7 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-	
+
 	</ui:style>
 	<g:ScrollPanel>
 		<g:VerticalPanel styleName="fullbox">
@@ -17,16 +17,29 @@
 					<table class="fullbox">
 						<tr>
 							<td class="halfbox">
-								<div class="fieldtitle">Nama</div>
-								<div class="fieldlabel">PT BPRS KARYA MUGI SENTOSA</div>
-								<div class="fieldtitle">Alamat</div>
-								<div class="fieldlabel">JL. KEDIRI I NO 188</div>
-								<div class="fieldtitle">Kota, kode pos</div>
-								<div class="fieldlabel">DEPOK 12345</div>
-								<div class="fieldtitle">Propinsi</div>
-								<div class="fieldlabel">JAWA BARAT</div>
-								<div class="fieldtitle">Nomer telpon</div>
-								<div class="fieldlabel">-</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Nama</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="name" />
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Alamat</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="address" />
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Kota, kode pos</div>
+									<div>
+										<g:TextBox styleName="fieldtextbox" ui:field="city" />
+										<g:TextBox styleName="fieldtextbox" ui:field="zipCode" />
+									</div>
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Propinsi</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="province" />
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Nomer telpon</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="phone" />
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -46,12 +59,18 @@
 					<table class="fullbox">
 						<tr>
 							<td class="halfbox">
-								<div class="fieldtitle">Kode BI</div>
-								<div class="fieldlabel">6613100</div>
-								<div class="fieldtitle">Direktur</div>
-								<div class="fieldlabel">DIDIK SUPARDANA</div>
-								<div class="fieldtitle">Penanggung jawab laporan</div>
-								<div class="fieldlabel">SULISTIYANTINI</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Kode BI</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="biCode" />
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Direktur</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="director" />
+								</div>
+								<div class="compositebox">
+									<div class="fieldtitle">Penanggung jawab laporan</div>
+									<g:TextBox styleName="fieldtextbox" ui:field="pic" />
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -60,7 +79,13 @@
 			<g:HTMLPanel styleName="widgetboxspacer">
 				<div></div>
 			</g:HTMLPanel>
-			<g:Button styleName="fieldbigbutton" ui:field="btnChange">Rubah</g:Button>
+			<g:HorizontalPanel>
+				<g:Button styleName="fieldbigbutton" ui:field="btnSave">Simpan</g:Button>
+				<g:HTMLPanel styleName="widgetboxspacer">
+					<div class="fieldspacer"></div>
+				</g:HTMLPanel>
+				<g:Button styleName="fieldbigbutton" ui:field="btnCancel">Batal</g:Button>
+			</g:HorizontalPanel>
 		</g:VerticalPanel>
 	</g:ScrollPanel>
 </ui:UiBinder> 

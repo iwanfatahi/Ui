@@ -37,6 +37,10 @@
 	width: 100%;
 }
 
+.compositebox {
+	padding-bottom: 8px;
+}
+
 .fieldspacer {
 	width: 10px;
 }
@@ -48,7 +52,7 @@
 .fieldtitle {
 	font: bold 10pt "UbuntuRegular";
 	color: #555555;
-	padding-top: 5px;
+	padding-bottom: 3px;
 }
 
 .fieldlabel {

@@ -19,6 +19,9 @@ public class CompanyProfileForm extends Composite implements ICompanyProfile {
 	interface ThisUiBinder extends UiBinder<Widget, CompanyProfileForm> {
 	}
 
+	CompanyViewer companyViewer;
+	CompanyEditor companyEditor;
+
 	@UiField
 	TabLayoutPanel tlpCompanyProfile;
 	@UiField
@@ -31,25 +34,21 @@ public class CompanyProfileForm extends Composite implements ICompanyProfile {
 	public CompanyProfileForm() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
-		vefCompany.setViewerEditor(new CompanyViewer(), new CompanyEditor());
+		companyViewer = new CompanyViewer();
+		companyEditor = new CompanyEditor();
+		vefCompany.setViewerEditor(companyViewer, companyEditor);
+		vefCompany.init(new CompanyDv());
 		vefBranch.setViewerEditor(new CompanyViewer(), new CompanyEditor());
+		vefBranch.init(new CompanyDv());
 		vefSubBranch.setViewerEditor(new CompanyViewer(), new CompanyEditor());
-		//
-		// Tabs are hidden because of overflow setting. Remove overflow &
-		// relative positioning from the tab widget.
-		// for (int i = 0; i < tlpCompanyProfile.getWidgetCount(); i++) {
-		// final Widget widget = tlpCompanyProfile.getWidget(i);
-		// widget.getElement().getStyle().setProperty("position", "relative");
-		//
-		// final Element parent = DOM.getParent(widget.getElement());
-		// parent.getStyle().setProperty("overflowX", "visible");
-		// //parent.getStyle().setProperty("overflowY", "visible");
-		// }
+		vefSubBranch.init(new CompanyDv());
 	}
 
 	@Override
 	public void setActivity(Activity activity) {
 		this.activity = activity;
+		companyViewer.setActivity(activity);
+		companyEditor.setActivity(activity);
 	}
 
 	@Override
@@ -58,8 +57,18 @@ public class CompanyProfileForm extends Composite implements ICompanyProfile {
 	}
 
 	@Override
-	public void editCompany() {
+	public void setCompanyData(CompanyDv data) {
+		vefCompany.setData(data);
+	}
 
+	@Override
+	public void viewCompany() {
+		vefCompany.view();
+	}
+
+	@Override
+	public void editCompany() {
+		vefCompany.edit();
 	}
 
 }
