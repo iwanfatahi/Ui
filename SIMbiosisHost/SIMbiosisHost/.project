@@ -5,7 +5,6 @@
 	<projects>
 		<project>SIMbiosisLogin</project>
 		<project>SIMbiosisLanding</project>
-		<project>BPRSystemAdmin</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

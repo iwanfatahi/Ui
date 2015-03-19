@@ -17,17 +17,16 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
  */
 public class SIMbiosisLogin implements EntryPoint {
 
-	private LoginConfig loginConfig = new LoginConfig();
-
 	private void showLoginForm() {
-		RootLayoutPanel.get().add(new LoginForm(loginConfig));
+		RootLayoutPanel.get().add(new LoginForm());
 	}
 
 	public void onModuleLoad() {
 		String session = Cookies.getCookie("simbiosis");
 		if (session != null && !session.isEmpty()) {
 			String url = Window.Location.getProtocol() + "//"
-					+ Window.Location.getHost() + "/systemuiapi/session/isvalid/"
+					+ Window.Location.getHost()
+					+ "/systemuiapi/session/isvalid/"
 					+ session.replace("/", "%2F");
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 			try {

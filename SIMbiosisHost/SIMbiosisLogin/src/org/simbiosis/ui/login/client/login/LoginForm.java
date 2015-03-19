@@ -3,7 +3,8 @@ package org.simbiosis.ui.login.client.login;
 import java.util.Date;
 
 import org.simbiosis.ui.login.client.Base64Utils;
-import org.simbiosis.ui.login.client.LoginConfig;
+import org.simbiosis.ui.login.client.json.JsonServerResponse;
+import org.simbiosis.ui.login.client.json.SimpleSessionJso;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -45,15 +46,7 @@ public class LoginForm extends Composite {
 	Label message = new Label();
 	HorizontalPanel loadingPanel = new HorizontalPanel();
 
-	LoginConfig loginConfig = null;
-
 	public LoginForm() {
-
-	}
-
-	public LoginForm(LoginConfig loginConfig) {
-		this.loginConfig = loginConfig;
-
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		userName.getElement().setPropertyString("placeholder", "Nama pengguna");
@@ -104,9 +97,14 @@ public class LoginForm extends Composite {
 		showMessage("Sistem login gagal");
 	}
 
+	private void loginFailed() {
+		hideLoading();
+		showMessage("Nama pengguna / kunci salah");
+	}
+
 	private void login(String salt) {
 		String url = Window.Location.getProtocol() + "//"
-				+ Window.Location.getHost() + "/systemapi/session/login";
+				+ Window.Location.getHost() + "/systemuiapi/session/login";
 		String passwordSalt = salt + password.getText();
 		String param = "userName=" + userName.getText() + "&password=" + salt
 				+ ":" + Base64Utils.toBase64(passwordSalt);
@@ -122,12 +120,12 @@ public class LoginForm extends Composite {
 				public void onResponseReceived(Request request,
 						Response response) {
 					if (200 == response.getStatusCode()) {
-						String result = response.getText();
-						if (result.isEmpty()) {
-							loginError();
+						SimpleSessionJso session = JsonServerResponse
+								.getSessionJso(response.getText());
+						if (session.getName().isEmpty()) {
+							loginFailed();
 						} else {
-							hideLoading();
-							onLoginSuccess(result);
+							onLoginSuccess(session);
 						}
 					} else {
 						loginError();
@@ -158,15 +156,11 @@ public class LoginForm extends Composite {
 		Cookies.removeCookie("simbiosis", "/");
 	}
 
-	private void onLoginSuccess(String result) {
-		if (!result.isEmpty()) {
-			//
-			createCookie(result);
-			//
-			Window.Location.replace(loginConfig.getAfterLogin());
-		} else {
-			showMessage("Nama pengguna / kunci salah");
-		}
+	private void onLoginSuccess(SimpleSessionJso session) {
+		hideLoading();
+		//
+		createCookie(session.getName());
+		Window.Location.replace("/" + session.getFirstModule());
 	}
 
 	private void showMessage(String text) {

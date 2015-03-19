@@ -9,9 +9,5 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="BPRSystemAdmin.war" deploy-path="/" handle="module:/resource/BPRSystemAdmin/BPRSystemAdmin">
-            <dependent-object/>
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
     </wb-module>
 </project-modules>

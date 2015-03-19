@@ -1,5 +1,8 @@
 package org.simbiosis.ui.landing.client;
 
+import org.simbiosis.ui.landing.client.json.JsonServerResponse;
+import org.simbiosis.ui.landing.client.json.SimpleSessionJso;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -23,8 +26,10 @@ public class SIMbiosisLanding implements EntryPoint {
 		if (session != null && !session.isEmpty()) {
 			//
 			//
-			String url = Window.Location.getProtocol()+"//"+ Window.Location.getHost()
-					+ "/systemuiapi/session/isvalid/" + session.replace("/", "%2F");
+			String url = Window.Location.getProtocol() + "//"
+					+ Window.Location.getHost()
+					+ "/systemuiapi/session/isvalid/"
+					+ session.replace("/", "%2F");
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 			try {
 				builder.sendRequest(null, new RequestCallback() {
@@ -35,8 +40,11 @@ public class SIMbiosisLanding implements EntryPoint {
 					public void onResponseReceived(Request request,
 							Response response) {
 						if (200 == response.getStatusCode()) {
-							if (response.getText().equalsIgnoreCase("1")) {
-								Window.Location.replace("/frontoffice");
+							SimpleSessionJso session = JsonServerResponse
+									.getSessionJso(response.getText());
+							if (!session.getName().isEmpty()) {
+								Window.Location.replace("/"
+										+ session.getFirstModule());
 							} else {
 								showLoginForm();
 							}

@@ -13,10 +13,4 @@
       <context-root>login</context-root>
     </web>
   </module>
-  <module>
-    <web>
-      <web-uri>BPRSystemAdmin.war</web-uri>
-      <context-root>sysadmin</context-root>
-    </web>
-  </module>
 </application>
