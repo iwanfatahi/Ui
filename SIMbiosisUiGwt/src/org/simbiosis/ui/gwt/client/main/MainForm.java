@@ -21,6 +21,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
@@ -46,6 +47,8 @@ public class MainForm extends Composite implements IMain {
 	SimpleLayoutPanel appPanel;
 	@UiField
 	Label appPath;
+	@UiField
+	HTMLPanel logoPanel;
 
 	Sidebar sidebar;
 	SidebarCollapse sidebarCollapse;
@@ -189,4 +192,8 @@ public class MainForm extends Composite implements IMain {
 		this.userRealName = userRealName;
 	}
 
+	@Override
+	public HTMLPanel getLogoPanel() {
+		return logoPanel;
+	}
 }

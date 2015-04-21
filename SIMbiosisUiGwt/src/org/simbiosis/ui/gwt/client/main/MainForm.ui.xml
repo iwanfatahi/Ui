@@ -8,9 +8,7 @@
 		<g:north size="50">
 			<g:HorizontalPanel styleName="headerMain">
 				<g:cell verticalAlignment="middle">
-					<g:HTMLPanel styleName="headerLogo">
-						<em class="headerLogoBig">SIM</em>biosis
-					</g:HTMLPanel>
+					<g:HTMLPanel styleName="headerLogo" ui:field="logoPanel" />
 				</g:cell>
 				<g:cell width="100%" verticalAlignment="middle">
 					<g:Label ui:field="appPath" styleName="headerAppPath" />

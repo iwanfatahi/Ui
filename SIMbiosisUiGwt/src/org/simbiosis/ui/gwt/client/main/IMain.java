@@ -6,6 +6,7 @@ import org.simbiosis.ui.gwt.client.mvp.SIMbiosisActivity;
 import org.simbiosis.ui.gwt.shared.ShortMenuDv;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,6 +21,8 @@ public interface IMain {
 
 	public void setUserInformation(String companyName, String branchName,
 			String userRealName);
+
+	public HTMLPanel getLogoPanel();
 
 	public abstract class Activity extends SIMbiosisActivity {
 		public abstract void logout();
