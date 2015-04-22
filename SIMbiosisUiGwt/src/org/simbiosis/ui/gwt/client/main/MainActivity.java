@@ -10,6 +10,7 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.safehtml.shared.UriUtils;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
@@ -50,7 +51,9 @@ public class MainActivity extends Activity {
 						Response response) {
 					if (200 == response.getStatusCode()) {
 						Cookies.removeCookie(getCookies(), "/");
-						Window.Location.replace("/login");
+						// FIXME:masih di hardcoded
+						Window.Location.replace(UriUtils
+								.encode("http://croowd.co.id/sso/logout?redirect=http://app.croowd.co.id/login"));
 					} else {
 						Window.alert("Received HTTP status code other than 200 : "
 								+ response.getStatusText());
