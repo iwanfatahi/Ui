@@ -39,7 +39,7 @@ public class SSOLogout extends HttpServlet {
 					//
 					String urlRedirect = request.getParameter("redirect");
 					// New location to be redirected
-					response.setHeader("Refresh", "5;url=" + urlRedirect);
+					response.setHeader("Refresh", "1;url=" + urlRedirect);
 					//
 					cookie.setValue(null);
 					cookie.setDomain(domainName);
