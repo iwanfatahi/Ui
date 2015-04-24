@@ -51,9 +51,8 @@ public class MainActivity extends Activity {
 						Response response) {
 					if (200 == response.getStatusCode()) {
 						Cookies.removeCookie(getCookies(), "/");
-						// FIXME:masih di hardcoded
-						Window.Location.replace(UriUtils
-								.encode("http://croowd.co.id/sso/logout?redirect=http://app.croowd.co.id/login"));
+						Window.Location.replace(UriUtils.encode(response
+								.getText()));
 					} else {
 						Window.alert("Received HTTP status code other than 200 : "
 								+ response.getStatusText());
