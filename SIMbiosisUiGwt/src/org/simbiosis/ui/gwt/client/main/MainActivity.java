@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void logout() {
 		String url = Window.Location.getProtocol() + "//"
-				+ Window.Location.getHost() + "/systemapi/session/logout/"
+				+ Window.Location.getHost() + "/systemuiapi/session/logout/"
 				+ getSession().replace("/", "%2F");
 		;
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
