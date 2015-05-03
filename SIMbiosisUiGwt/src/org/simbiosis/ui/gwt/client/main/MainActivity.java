@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 		String url = Window.Location.getProtocol() + "//"
 				+ Window.Location.getHost() + "/systemuiapi/session/logout/"
 				+ getSession().replace("/", "%2F");
-		;
+
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 		try {
 			builder.sendRequest(null, new RequestCallback() {

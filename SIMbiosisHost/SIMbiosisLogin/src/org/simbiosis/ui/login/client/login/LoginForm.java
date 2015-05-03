@@ -1,7 +1,5 @@
 package org.simbiosis.ui.login.client.login;
 
-import java.util.Date;
-
 import org.simbiosis.ui.login.client.Base64Utils;
 import org.simbiosis.ui.login.client.json.JsonServerResponse;
 import org.simbiosis.ui.login.client.json.SimpleSessionJso;
@@ -16,7 +14,6 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -61,8 +58,6 @@ public class LoginForm extends Composite {
 		loadLabel.setStyleName("login-loadingtext");
 		loadingPanel.add(symbol);
 		loadingPanel.add(loadLabel);
-		//
-		removeCookie();
 	}
 
 	private void loadSalt() {
@@ -145,22 +140,10 @@ public class LoginForm extends Composite {
 		loadSalt();
 	}
 
-	private void createCookie(String sessionName) {
-		final long DURATION = 1000 * 60 * 60 * 24 * 14;
-		// duration remembering login. 2 weeks in this example.
-		Date expires = new Date(System.currentTimeMillis() + DURATION);
-		Cookies.setCookie("simbiosis", sessionName, expires, null, "/", false);
-	}
-
-	private void removeCookie() {
-		Cookies.removeCookie("simbiosis", "/");
-	}
-
 	private void onLoginSuccess(SimpleSessionJso session) {
 		hideLoading();
 		//
-		createCookie(session.getName());
-		Window.Location.replace("/" + session.getFirstModule());
+		Window.Location.replace(session.getRedirect());
 	}
 
 	private void showMessage(String text) {

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SSOLogout
  */
-@WebServlet(name = "logout", urlPatterns = { "/logout" })
-public class SSOLogout extends HttpServlet {
+@WebServlet(name = "login", urlPatterns = { "/login" })
+public class SSOLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// String domainName = "croowd.co.id";
@@ -22,7 +22,7 @@ public class SSOLogout extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SSOLogout() {
+	public SSOLogin() {
 		super();
 	}
 
@@ -32,26 +32,19 @@ public class SSOLogout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equalsIgnoreCase("simbiosis")) {
-					//
-					String urlRedirect = request.getParameter("redirect");
-					// New location to be redirected
-					response.setHeader("Refresh", "1;url=" + urlRedirect);
-					//
-					cookie.setValue(null);
-					if (!domainName.isEmpty()) {
-						cookie.setDomain(domainName);
-					}
-					cookie.setMaxAge(0);
-					cookie.setPath("/");
-					response.addCookie(cookie);
-				}
-			}
+		//
+		String urlRedirect = request.getParameter("redirect");
+		String sessionName = request.getParameter("session");
+		// New location to be redirected
+		response.setHeader("Refresh", "1;url=" + urlRedirect);
+		//
+		Cookie cookie = new Cookie("simbiosis", sessionName);
+		if (!domainName.isEmpty()) {
+			cookie.setDomain(domainName);
 		}
+		cookie.setMaxAge(24 * 60 * 60); // 24 hours.
+		cookie.setPath("/");
+		response.addCookie(cookie);
 	}
 
 	/**
