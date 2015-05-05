@@ -11,25 +11,25 @@ public class SessionJso extends JavaScriptObject {
 		return this.userRealName;
 	}-*/;
 
-	public final native void setUserRealName(String value) /*-{
-		this.userRealName = value;
-	}-*/;
+//	public final native void setUserRealName(String value) /*-{
+//		this.userRealName = value;
+//	}-*/;
 
 	public final native String getCompanyName() /*-{
 		return this.companyName;
 	}-*/;
 
-	public final native void setCompanyName(String value) /*-{
-		this.companyName = value;
-	}-*/;
+//	public final native void setCompanyName(String value) /*-{
+//		this.companyName = value;
+//	}-*/;
 
 	public final native String getBranchName() /*-{
 		return this.branchName;
 	}-*/;
 
-	public final native void setBranchName(String value) /*-{
-		this.branchName = value;
-	}-*/;
+//	public final native void setBranchName(String value) /*-{
+//		this.branchName = value;
+//	}-*/;
 
 	public final native JsArray<MenuJso> getMenuItems() /*-{
 		return this.menuItems;
