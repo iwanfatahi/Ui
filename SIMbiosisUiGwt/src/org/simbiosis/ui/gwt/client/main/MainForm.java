@@ -60,6 +60,8 @@ public class MainForm extends Composite implements IMain {
 	public MainForm() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
+		appPanel.setStyleName("apppanelparent");
+		//
 		sidebar = new Sidebar(new SidebarHandler() {
 
 			@Override
