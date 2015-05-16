@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 public class SSOLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	// String domainName = "croowd.co.id";
-	String domainName = "";
+	// FIXME : domain name harus diset, tapi sekarang masih hardcoded
+	String domainName = "croowd.co.id";
+
+	// String domainName = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
