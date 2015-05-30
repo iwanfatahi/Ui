@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.DoubleBox;
-import com.google.gwt.user.client.ui.IntegerBox;
 
 public class DoubleTextBox extends DoubleBox {
 
@@ -15,7 +14,7 @@ public class DoubleTextBox extends DoubleBox {
 	Boolean dontProcess = false;
 
 	public DoubleTextBox() {
-		nf = NumberFormat.getFormat("#,##0.00;(#,##0.00)");
+		nf = NumberFormat.getFormat("#,##0.00");
 		//
 		addKeyPressHandler(new KeyPressHandler() {
 
@@ -28,7 +27,7 @@ public class DoubleTextBox extends DoubleBox {
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_RIGHT
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_DELETE
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_BACKSPACE) {
-					((IntegerBox) event.getSource()).cancelKey();
+					((DoubleBox) event.getSource()).cancelKey();
 				} else {
 					if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_LEFT
 							|| event.getNativeEvent().getKeyCode() == KeyCodes.KEY_RIGHT) {
