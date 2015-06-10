@@ -2,7 +2,6 @@ package org.simbiosis.ui.gwt.client.main;
 
 import java.util.List;
 
-import org.simbiosis.ui.gwt.client.mainwidget.ApplicationsPopup;
 import org.simbiosis.ui.gwt.client.mainwidget.PreferencesPopup;
 import org.simbiosis.ui.gwt.client.mainwidget.PreferencesPopup.Handler;
 import org.simbiosis.ui.gwt.client.mainwidget.Sidebar;
@@ -37,8 +36,8 @@ public class MainForm extends Composite implements IMain {
 
 	@UiField
 	Button preferences;
-	@UiField
-	Button applications;
+	// @UiField
+	// Button applications;
 	@UiField
 	DockLayoutPanel sidebarParentPanel;
 	@UiField
@@ -148,32 +147,32 @@ public class MainForm extends Composite implements IMain {
 		pPopup.show();
 	}
 
-	@UiHandler("applications")
-	public void onApplications(ClickEvent e) {
-		// Ganti style button preferences
-		applications.setStyleName("headerConfigButtonOnClick");
-		// Buat popup untuk preferences
-		int x = Window.getClientWidth() - 239;
-		ApplicationsPopup pPopup = new ApplicationsPopup(x, 60, "200px");
-		// Tambahkan close handler yang mengembalikan style button preferences
-		pPopup.addCloseHandler(new CloseHandler<PopupPanel>() {
-
-			@Override
-			public void onClose(CloseEvent<PopupPanel> event) {
-				applications.setStyleName("headerConfigButton");
-			}
-		});
-		// Tambahkan handler untuk masing-masing item
-		// pPopup.setHandler(new Handler() {
-		//
-		// @Override
-		// public void onLogout() {
-		// activity.logout();
-		// }
-		// });
-		// Munculkan
-		pPopup.show();
-	}
+	// @UiHandler("applications")
+	// public void onApplications(ClickEvent e) {
+	// // Ganti style button preferences
+	// applications.setStyleName("headerConfigButtonOnClick");
+	// // Buat popup untuk preferences
+	// int x = Window.getClientWidth() - 239;
+	// ApplicationsPopup pPopup = new ApplicationsPopup(x, 60, "200px");
+	// // Tambahkan close handler yang mengembalikan style button preferences
+	// pPopup.addCloseHandler(new CloseHandler<PopupPanel>() {
+	//
+	// @Override
+	// public void onClose(CloseEvent<PopupPanel> event) {
+	// applications.setStyleName("headerConfigButton");
+	// }
+	// });
+	// // Tambahkan handler untuk masing-masing item
+	// // pPopup.setHandler(new Handler() {
+	// //
+	// // @Override
+	// // public void onLogout() {
+	// // activity.logout();
+	// // }
+	// // });
+	// // Munculkan
+	// pPopup.show();
+	// }
 
 	public void attachApp(Widget widget) {
 		appPanel.clear();

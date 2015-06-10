@@ -15,9 +15,9 @@
 				</g:cell>
 				<g:cell verticalAlignment="middle" styleName="headerConfig">
 					<g:HTMLPanel styleName="headerSpace">
-						<g:Button ui:field="applications" styleName="headerConfigButton">
+						<!-- <g:Button ui:field="applications" styleName="headerConfigButton">
 							<i class="fa fa-bars fa-fw" />
-						</g:Button>
+						</g:Button> -->
 						<g:Button ui:field="preferences" styleName="headerConfigButton">
 							<i class="fa fa-gear fa-fw" />
 						</g:Button>
