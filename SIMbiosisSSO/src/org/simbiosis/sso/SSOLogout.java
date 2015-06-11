@@ -1,6 +1,9 @@
 package org.simbiosis.sso;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SSOLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	// Masih di hardcode juga
-	String domainName = "croowd.co.id";
-
-	// String domainName = "";
+	String domainName = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,6 +34,7 @@ public class SSOLogout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		readProperties();
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
@@ -62,6 +63,34 @@ public class SSOLogout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	private void readProperties() {
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream(
+					"/home/simbiosis/global/simbiosis.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			domainName = prop.getProperty("domain");
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
