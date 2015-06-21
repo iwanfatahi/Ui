@@ -1,13 +1,11 @@
 package org.simbiosis.ui.gwt.client.main;
 
-import java.util.List;
-
+import org.simbiosis.ui.gwt.client.SIMbiosisStatus;
 import org.simbiosis.ui.gwt.client.mainwidget.PreferencesPopup;
 import org.simbiosis.ui.gwt.client.mainwidget.PreferencesPopup.Handler;
 import org.simbiosis.ui.gwt.client.mainwidget.Sidebar;
 import org.simbiosis.ui.gwt.client.mainwidget.SidebarCollapse;
 import org.simbiosis.ui.gwt.client.mainwidget.SidebarHandler;
-import org.simbiosis.ui.gwt.shared.ShortMenuDv;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -52,14 +50,18 @@ public class MainForm extends Composite implements IMain {
 	Sidebar sidebar;
 	SidebarCollapse sidebarCollapse;
 	Activity activity;
-	String companyName;
-	String branchName;
-	String userRealName;
+
+	SIMbiosisStatus status;
+
+	Boolean hasProfile;
+	String linkProfile;
 
 	public MainForm() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//
 		appPanel.setStyleName("apppanelparent");
+		//
+		hasProfile = false;
 		//
 		sidebar = new Sidebar(new SidebarHandler() {
 
@@ -102,10 +104,11 @@ public class MainForm extends Composite implements IMain {
 	}
 
 	@Override
-	public void setActivity(Activity activity) {
+	public void setActivity(Activity activity, SIMbiosisStatus status) {
 		this.activity = activity;
-		sidebar.setActivity(activity);
-		sidebarCollapse.setActivity(activity);
+		sidebar.setActivity(activity, status);
+		sidebarCollapse.setActivity(activity, status);
+		this.status = status;
 	}
 
 	@Override
@@ -125,8 +128,12 @@ public class MainForm extends Composite implements IMain {
 		// Buat popup untuk preferences
 		int x = Window.getClientWidth() - 276;
 		PreferencesPopup pPopup = new PreferencesPopup(x, 60, "270px");
-		pPopup.setUserName(userRealName);
-		pPopup.setCompany(companyName + " - " + branchName);
+		pPopup.setUserName(status.getUserRealName());
+		pPopup.setCompany(status.getCompanyName() + " - "
+				+ status.getBranchName());
+		if (hasProfile) {
+			pPopup.setHasProfile();
+		}
 		// Tambahkan close handler yang mengembalikan style button preferences
 		pPopup.addCloseHandler(new CloseHandler<PopupPanel>() {
 
@@ -141,6 +148,11 @@ public class MainForm extends Composite implements IMain {
 			@Override
 			public void onLogout() {
 				activity.logout();
+			}
+
+			@Override
+			public void onProfile() {
+				activity.goTo(linkProfile + ":");
 			}
 		});
 		// Munculkan
@@ -180,21 +192,13 @@ public class MainForm extends Composite implements IMain {
 	}
 
 	@Override
-	public void setMenuList(List<ShortMenuDv> menus) {
-		sidebar.setMenuList(menus);
-		sidebarCollapse.setMenuList(menus);
-	}
-
-	@Override
-	public void setUserInformation(String companyName, String branchName,
-			String userRealName) {
-		this.companyName = companyName;
-		this.branchName = branchName;
-		this.userRealName = userRealName;
-	}
-
-	@Override
 	public HTMLPanel getLogoPanel() {
 		return logoPanel;
+	}
+
+	@Override
+	public void setHasProfile(String linkProfile) {
+		hasProfile = true;
+		this.linkProfile = linkProfile;
 	}
 }

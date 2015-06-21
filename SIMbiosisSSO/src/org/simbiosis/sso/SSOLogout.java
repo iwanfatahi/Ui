@@ -35,26 +35,34 @@ public class SSOLogout extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		readProperties();
+		//
+		boolean hasCookie = false;
+		Cookie myCookie = null;
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equalsIgnoreCase("simbiosis")) {
-					//
-					String urlRedirect = request.getParameter("redirect");
-					// New location to be redirected
-					response.setHeader("Refresh", "1;url=" + urlRedirect);
-					//
-					cookie.setValue(null);
-					if (!domainName.isEmpty()) {
-						cookie.setDomain(domainName);
-					}
-					cookie.setMaxAge(0);
-					cookie.setPath("/");
-					response.addCookie(cookie);
+					myCookie = cookie;
+					hasCookie = true;
 				}
 			}
 		}
+
+		if (hasCookie) {
+			//
+			myCookie.setValue(null);
+			if (!domainName.isEmpty()) {
+				myCookie.setDomain(domainName);
+			}
+			myCookie.setMaxAge(0);
+			myCookie.setPath("/");
+			response.addCookie(myCookie);
+		}
+		//
+		String urlRedirect = request.getParameter("redirect");
+		// New location to be redirected
+		response.setHeader("Refresh", "1;url=" + urlRedirect);
 	}
 
 	/**

@@ -3,10 +3,10 @@ package org.simbiosis.ui.gwt.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.simbiosis.ui.gwt.client.json.ConfigJso;
 import org.simbiosis.ui.gwt.client.json.JsonServerResponse;
 import org.simbiosis.ui.gwt.client.json.MenuJso;
 import org.simbiosis.ui.gwt.client.json.SessionJso;
-import org.simbiosis.ui.gwt.client.main.IMain;
 import org.simbiosis.ui.gwt.client.main.Main;
 import org.simbiosis.ui.gwt.client.mvp.SIMbiosisClientFactory;
 import org.simbiosis.ui.gwt.client.mvp.SIMbiosisHistoryMapper;
@@ -73,12 +73,7 @@ public abstract class SIMbiosisEntryPoint {
 		//
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				clientFactory.getEventBus());
-		IMain mainForm = clientFactory.getMainForm();
-		SIMbiosisStatus status = clientFactory.getStatus();
-		activityManager.setDisplay(mainForm.getDisplay());
-		mainForm.setMenuList(status.getMenus());
-		mainForm.setUserInformation(status.getCompanyName(),
-				status.getBranchName(), status.getUserRealName());
+		activityManager.setDisplay(clientFactory.getMainForm().getDisplay());
 
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
 		final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
@@ -96,7 +91,8 @@ public abstract class SIMbiosisEntryPoint {
 			MenuJso menu = menus.get(i);
 			userMenus.add(new ShortMenuDv(menu.getTitle(), menu.getIcon(), menu
 					.getLink(), menu.getGrandParentTitle() + " / "
-					+ menu.getParentTitle() + " / " + menu.getTitle()));
+					+ menu.getParentTitle() + " / " + menu.getTitle(), menu
+					.getVisible() == 1));
 		}
 		// userMenus.add(new ShortMenuDv("Master tabungan", "fa-database",
 		// "SearchSaving"));
@@ -126,39 +122,79 @@ public abstract class SIMbiosisEntryPoint {
 		SIMbiosisStatus status = getClientFactory().getStatus();
 		String session = status.getSession();
 		if (session != null && !session.isEmpty()) {
-			String url = Window.Location.getProtocol() + "//"
-					+ Window.Location.getHost()
-					+ "/systemuiapi/session/getlogininfo/"
-					+ session.replace("/", "%2F") + "/"
-					+ status.getModuleName();
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
-			try {
-				builder.sendRequest(null, new RequestCallback() {
-					public void onError(Request request, Throwable e) {
-						Window.alert(e.getMessage());
-					}
-
-					public void onResponseReceived(Request request,
-							Response response) {
-						if (200 == response.getStatusCode()) {
-							if (!response.getText().isEmpty()) {
-								sessionValid(response.getText());
-							} else {
-								showLoginForm();
-							}
-						} else {
-							Window.alert("Received HTTP status code other than 200 : "
-									+ response.getStatusText());
-						}
-					}
-				});
-			} catch (RequestException e) {
-				// Couldn't connect to server
-				Window.alert(e.getMessage());
-			}
-
+			//
+			loadConfiguration(status);
+			//
+			loadLoginInfo(status);
 		} else {
 			showLoginForm();
+		}
+	}
+
+	private void loadConfiguration(final SIMbiosisStatus status) {
+		String function = "/systemuiapi/config/";
+		String url = Window.Location.getProtocol() + "//"
+				+ Window.Location.getHost() + function;
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+		try {
+			builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable e) {
+					Window.alert(e.getMessage());
+				}
+
+				public void onResponseReceived(Request request,
+						Response response) {
+					if (200 == response.getStatusCode()) {
+						if (!response.getText().isEmpty()) {
+							ConfigJso config = JsonServerResponse
+									.getConfigJso(response.getText());
+							status.setAppApi(config.getAppApi());
+							status.setSimbiosisApi(config.getSimbiosisApi());
+						} else {
+							showLoginForm();
+						}
+					} else {
+						Window.alert("Received HTTP status code other than 200 : "
+								+ response.getStatusText());
+					}
+				}
+			});
+		} catch (RequestException e) {
+			// Couldn't connect to server
+			Window.alert(e.getMessage());
+		}
+	}
+
+	private void loadLoginInfo(SIMbiosisStatus status) {
+		String session = status.getSession();
+		String function = "/systemuiapi/session/getlogininfo/";
+		String url = Window.Location.getProtocol() + "//"
+				+ Window.Location.getHost() + function
+				+ session.replace("/", "%2F") + "/" + status.getModuleName();
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+		try {
+			builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable e) {
+					Window.alert(e.getMessage());
+				}
+
+				public void onResponseReceived(Request request,
+						Response response) {
+					if (200 == response.getStatusCode()) {
+						if (!response.getText().isEmpty()) {
+							sessionValid(response.getText());
+						} else {
+							showLoginForm();
+						}
+					} else {
+						Window.alert("Received HTTP status code other than 200 : "
+								+ response.getStatusText());
+					}
+				}
+			});
+		} catch (RequestException e) {
+			// Couldn't connect to server
+			Window.alert(e.getMessage());
 		}
 	}
 

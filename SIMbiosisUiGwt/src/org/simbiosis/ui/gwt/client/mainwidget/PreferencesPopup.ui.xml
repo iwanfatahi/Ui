@@ -18,8 +18,7 @@
 					</g:VerticalPanel>
 				</g:HorizontalPanel>
 			</g:VerticalPanel>
-			<g:Label ui:field="changePassword" styleName="callOutMenuItem">Ganti kata kunci</g:Label>
-			<g:Label ui:field="editFastMenu" styleName="callOutMenuItem">Edit menu cepat</g:Label>
+			<g:Label ui:field="profile" styleName="callOutMenuItem">Profil pengguna</g:Label>
 			<g:Label ui:field="logout" styleName="callOutMenuItem">Keluar</g:Label>
 		</g:VerticalPanel>
 	</g:VerticalPanel>

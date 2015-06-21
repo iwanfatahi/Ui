@@ -7,16 +7,19 @@ public class ShortMenuDv implements IsSerializable {
 	String link;
 	String icon;
 	String path;
+	Boolean visible;
 
 	public ShortMenuDv() {
 
 	}
 
-	public ShortMenuDv(String title, String icon, String link, String path) {
+	public ShortMenuDv(String title, String icon, String link, String path,
+			Boolean visible) {
 		this.title = title;
 		this.icon = icon;
 		this.link = link;
 		this.path = path;
+		this.visible = visible;
 	}
 
 	public String getTitle() {
@@ -45,5 +48,13 @@ public class ShortMenuDv implements IsSerializable {
 
 	public String getPath() {
 		return path;
+	}
+
+	public Boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
 	}
 }

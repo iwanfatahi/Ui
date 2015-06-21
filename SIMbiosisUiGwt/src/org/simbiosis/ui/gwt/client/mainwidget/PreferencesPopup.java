@@ -14,6 +14,7 @@ public class PreferencesPopup extends PopupPanel {
 
 	public interface Handler {
 		public void onLogout();
+		public void onProfile();
 	}
 
 	@UiField
@@ -21,14 +22,12 @@ public class PreferencesPopup extends PopupPanel {
 	@UiField
 	Label userCompany;
 	@UiField
+	Label profile;
+	@UiField
 	Label logout;
 	@UiField
-	Label changePassword;
-	@UiField
-	Label editFastMenu;
-	@UiField
 	VerticalPanel callOutPanel;
-
+	
 	private static ThisUiBinder uiBinder = GWT.create(ThisUiBinder.class);
 
 	interface ThisUiBinder extends UiBinder<Widget, PreferencesPopup> {
@@ -39,12 +38,19 @@ public class PreferencesPopup extends PopupPanel {
 	public PreferencesPopup(int left, int top, String width) {
 		super(true);
 		setWidget(uiBinder.createAndBindUi(this));
+		//
+		profile.setVisible(false);
+		//
 		callOutPanel.setWidth(width);
 		setPopupPosition(left, top);
 	}
 
 	public void setUserName(String userName) {
 		this.userName.setText(userName);
+	}
+	
+	public void setHasProfile(){
+		profile.setVisible(true);
 	}
 
 	public void setCompany(String company) {
@@ -60,4 +66,11 @@ public class PreferencesPopup extends PopupPanel {
 		hide();
 		handler.onLogout();
 	}
+	
+	@UiHandler("profile")
+	public void onProfile(ClickEvent e) {
+		hide();
+		handler.onProfile();
+	}
+
 }

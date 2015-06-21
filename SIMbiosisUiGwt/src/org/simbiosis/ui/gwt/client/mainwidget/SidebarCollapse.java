@@ -3,6 +3,7 @@ package org.simbiosis.ui.gwt.client.mainwidget;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.simbiosis.ui.gwt.client.SIMbiosisStatus;
 import org.simbiosis.ui.gwt.client.main.IMain.Activity;
 import org.simbiosis.ui.gwt.shared.ShortMenuDv;
 
@@ -41,14 +42,6 @@ public class SidebarCollapse extends Composite {
 		itemPanel.add(new SidebarCollapseHeader(handler));
 	}
 
-	public void setMenuList(List<ShortMenuDv> menus) {
-		for (ShortMenuDv menu : menus) {
-			addMenuItem(menu.getTitle(), menu.getIcon(), menu.getLink(),
-					menu.getPath());
-			indexCreation++;
-		}
-	}
-
 	private void addMenuItem(String title, String icon, final String link,
 			final String path) {
 		final Integer index = new Integer(indexCreation);
@@ -69,8 +62,14 @@ public class SidebarCollapse extends Composite {
 		hpList.add(hp);
 	}
 
-	public void setActivity(Activity activity) {
+	public void setActivity(Activity activity, SIMbiosisStatus status) {
 		this.activity = activity;
+		//
+		for (ShortMenuDv menu : status.getMenus()) {
+			addMenuItem(menu.getTitle(), menu.getIcon(), menu.getLink(),
+					menu.getPath());
+			indexCreation++;
+		}
 	}
 
 	public void activateMenu(Integer index, String path, Boolean execHandler) {

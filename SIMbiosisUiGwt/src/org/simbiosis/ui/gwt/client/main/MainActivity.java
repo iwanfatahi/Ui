@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		IMain myForm = appFactory.getMainForm();
-		myForm.setActivity(this);
+		myForm.setActivity(this, appFactory.getStatus());
 	}
 
 	@Override

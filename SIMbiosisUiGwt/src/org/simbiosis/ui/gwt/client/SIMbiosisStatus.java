@@ -14,6 +14,8 @@ public class SIMbiosisStatus {
 	private String branchName;
 	private String moduleName;
 	private List<ShortMenuDv> menus;
+	private String simbiosisApi;
+	private String appApi;
 
 	public SIMbiosisStatus() {
 		session = Cookies.getCookie("simbiosis");
@@ -69,6 +71,22 @@ public class SIMbiosisStatus {
 
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
+	}
+
+	public String getSimbiosisApi() {
+		return simbiosisApi;
+	}
+
+	public void setSimbiosisApi(String simbiosisApi) {
+		this.simbiosisApi = simbiosisApi;
+	}
+
+	public String getAppApi() {
+		return appApi;
+	}
+
+	public void setAppApi(String appApi) {
+		this.appApi = appApi;
 	}
 
 }
