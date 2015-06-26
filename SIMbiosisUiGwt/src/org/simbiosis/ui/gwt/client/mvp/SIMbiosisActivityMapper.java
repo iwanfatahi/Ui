@@ -1,7 +1,10 @@
 package org.simbiosis.ui.gwt.client.mvp;
 
+import java.util.Iterator;
+
 import org.simbiosis.ui.gwt.client.main.Main;
 import org.simbiosis.ui.gwt.client.main.MainActivity;
+import org.simbiosis.ui.gwt.shared.ShortMenuDv;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -41,6 +44,32 @@ public abstract class SIMbiosisActivityMapper implements ActivityMapper {
 			return new MainActivity((Main) place, clientFactory);
 		} else {
 			if (clientFactory.canGoto(place)) {
+				if (!clientFactory.getStatus().getInitialized()) {
+					MainActivity mainActivity = new MainActivity(new Main(""),
+							clientFactory);
+					clientFactory.getMainForm().setActivity(mainActivity,
+							clientFactory.getStatus());
+					// Iterate menu
+					boolean found = false;
+					int i = 0, index = -1;
+					String path = "";
+					Iterator<ShortMenuDv> iter = clientFactory.getStatus()
+							.getMenus().iterator();
+					while (!found && iter.hasNext()) {
+						ShortMenuDv item = iter.next();
+						if (item.getPlace().equalsIgnoreCase(
+								place.getClass().getName().toLowerCase())) {
+							path = item.getPath();
+							index = i;
+							found = true;
+						}
+						i++;
+					}
+					if (index != -1) {
+						clientFactory.getMainForm().activateMainMenu(index,
+								path);
+					}
+				}
 				return dispatchActivity(place);
 			}
 		}

@@ -18,6 +18,8 @@ public interface IMain {
 	public HTMLPanel getLogoPanel();
 	
 	public void setHasProfile(String link);
+	
+	public void activateMainMenu(Integer index, String path);
 
 	public abstract class Activity extends SIMbiosisActivity {
 		public abstract void logout();

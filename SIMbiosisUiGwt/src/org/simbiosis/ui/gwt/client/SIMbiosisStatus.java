@@ -16,6 +16,7 @@ public class SIMbiosisStatus {
 	private List<ShortMenuDv> menus;
 	private String simbiosisApi;
 	private String appApi;
+	private Boolean initialized = false;
 
 	public SIMbiosisStatus() {
 		session = Cookies.getCookie("simbiosis");
@@ -87,6 +88,14 @@ public class SIMbiosisStatus {
 
 	public void setAppApi(String appApi) {
 		this.appApi = appApi;
+	}
+
+	public Boolean getInitialized() {
+		return initialized;
+	}
+
+	public void setInitialized(Boolean initialized) {
+		this.initialized = initialized;
 	}
 
 }

@@ -109,6 +109,7 @@ public class MainForm extends Composite implements IMain {
 		sidebar.setActivity(activity, status);
 		sidebarCollapse.setActivity(activity, status);
 		this.status = status;
+		status.setInitialized(true);
 	}
 
 	@Override
@@ -200,5 +201,10 @@ public class MainForm extends Composite implements IMain {
 	public void setHasProfile(String linkProfile) {
 		hasProfile = true;
 		this.linkProfile = linkProfile;
+	}
+
+	@Override
+	public void activateMainMenu(Integer index, String path) {
+		sidebar.activateMenu(index, path, true);
 	}
 }

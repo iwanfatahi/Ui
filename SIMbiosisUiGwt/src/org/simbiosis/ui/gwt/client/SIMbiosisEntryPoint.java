@@ -92,7 +92,7 @@ public abstract class SIMbiosisEntryPoint {
 			userMenus.add(new ShortMenuDv(menu.getTitle(), menu.getIcon(), menu
 					.getLink(), menu.getGrandParentTitle() + " / "
 					+ menu.getParentTitle() + " / " + menu.getTitle(), menu
-					.getVisible() == 1));
+					.getPlace(), menu.getVisible() == 1));
 		}
 		// userMenus.add(new ShortMenuDv("Master tabungan", "fa-database",
 		// "SearchSaving"));

@@ -4,6 +4,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class ShortMenuDv implements IsSerializable {
 	String title;
+	String place;
 	String link;
 	String icon;
 	String path;
@@ -14,11 +15,12 @@ public class ShortMenuDv implements IsSerializable {
 	}
 
 	public ShortMenuDv(String title, String icon, String link, String path,
-			Boolean visible) {
+			String place, Boolean visible) {
 		this.title = title;
 		this.icon = icon;
 		this.link = link;
 		this.path = path;
+		this.place = place;
 		this.visible = visible;
 	}
 
@@ -57,4 +59,13 @@ public class ShortMenuDv implements IsSerializable {
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
 }

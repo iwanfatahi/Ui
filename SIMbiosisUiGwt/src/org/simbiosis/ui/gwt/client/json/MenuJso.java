@@ -36,6 +36,10 @@ public class MenuJso extends JavaScriptObject {
 		return this.grandParentTitle;
 	}-*/;
 
+	public final native String getPlace() /*-{
+		return this.place;
+	}-*/;
+
 	public final native int getVisible() /*-{
 		return this.visible;
 	}-*/;
