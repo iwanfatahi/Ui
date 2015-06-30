@@ -71,11 +71,13 @@ public class Sidebar extends Composite {
 	public void setActivity(Activity activity, SIMbiosisStatus status) {
 		this.activity = activity;
 		//
-		for (ShortMenuDv menu : status.getMenus()) {
-			if (menu.isVisible()) {
-				addMenuItem(menu.getTitle(), menu.getIcon(), menu.getLink(),
-						menu.getPath());
-				indexCreation++;
+		if (!status.getInitialized()) {
+			for (ShortMenuDv menu : status.getMenus()) {
+				if (menu.isVisible()) {
+					addMenuItem(menu.getTitle(), menu.getIcon(),
+							menu.getLink(), menu.getPath());
+					indexCreation++;
+				}
 			}
 		}
 	}
@@ -86,15 +88,20 @@ public class Sidebar extends Composite {
 			hpList.get(indexSelected).setStyleName("sidebarMenu");
 			labelList.get(indexSelected).setStyleName("sidebarMenuTitle");
 		}
-		//
-		indexSelected = index;
-		// Set warna aktiv
-		hpList.get(indexSelected).setStyleName("sidebarMenuSelected");
-		//
-		if (execHandler) {
-			handler.changeMenuItem(index, path);
+		if (index < hpList.size()) {
+			//
+			indexSelected = index;
+			// Set warna aktiv
+			hpList.get(indexSelected).setStyleName("sidebarMenuSelected");
+			//
+			if (execHandler) {
+				handler.changeMenuItem(index, path);
+			}
+			//
+			labelList.get(indexSelected).setStyleName(
+					"sidebarMenuTitleSelected");
+		} else {
+			indexSelected = -1;
 		}
-		//
-		labelList.get(indexSelected).setStyleName("sidebarMenuTitleSelected");
 	}
 }
