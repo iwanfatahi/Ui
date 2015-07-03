@@ -37,9 +37,11 @@ public class SSOLogin extends HttpServlet {
 		readProperties();
 		//
 		String urlRedirect = request.getParameter("redirect");
+		String hash = request.getParameter("hash");
 		String sessionName = request.getParameter("session");
 		// New location to be redirected
-		response.setHeader("Refresh", "1;url=" + urlRedirect);
+		response.setHeader("Refresh", "1;url=" + urlRedirect
+				+ (hash != null ? ("#" + hash) : ""));
 		//
 		Cookie cookie = new Cookie("simbiosis", sessionName);
 		if (!domainName.isEmpty()) {
@@ -85,5 +87,5 @@ public class SSOLogin extends HttpServlet {
 			}
 		}
 	}
-	
+
 }

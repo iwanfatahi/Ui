@@ -22,6 +22,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.safehtml.shared.UriUtils;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
@@ -66,7 +67,10 @@ public abstract class SIMbiosisEntryPoint {
 	}
 
 	private void showLoginForm() {
-		Window.Location.replace("/login");
+		String path = Window.Location.getPath();
+		String hash = Window.Location.getHash();
+		String url = UriUtils.encode(path + hash);
+		Window.Location.replace("/login/?ref=" + url);
 	}
 
 	private void showMainForm() {
