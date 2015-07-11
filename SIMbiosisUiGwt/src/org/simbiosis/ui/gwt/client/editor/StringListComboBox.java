@@ -15,7 +15,7 @@ public class StringListComboBox extends ListBox implements
 		//
 		this.listData = listData;
 		for (String data : listData) {
-			addItem(data);
+			addItem(data,data);
 		}
 	}
 
@@ -26,7 +26,7 @@ public class StringListComboBox extends ListBox implements
 		} else {
 			int index = 0;
 			for (String data : listData) {
-				if (value.equals(data)) {
+				if (value.equalsIgnoreCase(data)) {
 					break;
 				}
 				index++;
@@ -37,7 +37,7 @@ public class StringListComboBox extends ListBox implements
 
 	@Override
 	public String getValue() {
-		return getItemText(getSelectedIndex());
+		return getValue(getSelectedIndex());
 	}
 
 }
