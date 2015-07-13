@@ -43,13 +43,15 @@ public class NumericTextBox extends TextBox implements LeafValueEditor<String> {
 	}
 
 	public static boolean isStringNumeric(String str) {
+		// FIXME : statis
 		boolean isMinus = str.charAt(0) == '-';
+		char localeDecimalSeparator = '.';
+		//
 		if ((isMinus && str.length() < 2)
 				|| ((!isMinus) && !Character.isDigit(str.charAt(0))))
 			return false;
 
 		boolean isDecimalSeparatorFound = false;
-		char localeDecimalSeparator = '.';
 
 		for (char c : str.substring(1).toCharArray()) {
 			if (!Character.isDigit(c)) {
