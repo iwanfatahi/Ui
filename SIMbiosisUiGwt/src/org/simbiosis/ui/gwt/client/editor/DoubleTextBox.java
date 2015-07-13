@@ -10,10 +10,12 @@ import com.google.gwt.user.client.ui.DoubleBox;
 
 public class DoubleTextBox extends DoubleBox {
 
-	NumberFormat nf = NumberFormat.getFormat("#,##0.00");
+	NumberFormat nf = NumberFormat.getFormat("#,##0.00;(#,##0.00)");
 	Boolean dontProcess = false;
 
 	public DoubleTextBox() {
+		//
+		setStyleName("gwt-TextBox");
 		//
 		addKeyPressHandler(new KeyPressHandler() {
 
@@ -52,9 +54,9 @@ public class DoubleTextBox extends DoubleBox {
 		});
 
 	}
-	
+
 	@Override
-	public void setValue(Double value){
+	public void setValue(Double value) {
 		setText(nf.format(value));
 	}
 

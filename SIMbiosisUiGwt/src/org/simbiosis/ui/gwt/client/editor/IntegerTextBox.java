@@ -10,10 +10,12 @@ import com.google.gwt.user.client.ui.IntegerBox;
 
 public class IntegerTextBox extends IntegerBox {
 
-	NumberFormat nf = NumberFormat.getFormat("#0");
+	NumberFormat nf = NumberFormat.getFormat("#0;(#0)");
 	Boolean dontProcess = false;
 
 	public IntegerTextBox() {
+		//
+		setStyleName("gwt-TextBox");
 		//
 		addKeyPressHandler(new KeyPressHandler() {
 
@@ -27,6 +29,11 @@ public class IntegerTextBox extends IntegerBox {
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_DELETE
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_BACKSPACE) {
 					((IntegerBox) event.getSource()).cancelKey();
+				} else {
+					if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_LEFT
+							|| event.getNativeEvent().getKeyCode() == KeyCodes.KEY_RIGHT) {
+						dontProcess = true;
+					}
 				}
 			}
 		});
@@ -45,7 +52,6 @@ public class IntegerTextBox extends IntegerBox {
 				}
 			}
 		});
-
 	}
 
 	@Override

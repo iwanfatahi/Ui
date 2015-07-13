@@ -10,10 +10,12 @@ import com.google.gwt.user.client.ui.LongBox;
 
 public class LongTextBox extends LongBox {
 
-	NumberFormat nf = NumberFormat.getFormat("#0");
+	NumberFormat nf = NumberFormat.getFormat("#0;(#0)");
 	Boolean dontProcess = false;
 
 	public LongTextBox() {
+		//
+		setStyleName("gwt-TextBox");
 		//
 		addKeyPressHandler(new KeyPressHandler() {
 
@@ -27,6 +29,11 @@ public class LongTextBox extends LongBox {
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_DELETE
 						&& event.getNativeEvent().getKeyCode() != KeyCodes.KEY_BACKSPACE) {
 					((LongBox) event.getSource()).cancelKey();
+				} else {
+					if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_LEFT
+							|| event.getNativeEvent().getKeyCode() == KeyCodes.KEY_RIGHT) {
+						dontProcess = true;
+					}
 				}
 			}
 		});
@@ -45,7 +52,6 @@ public class LongTextBox extends LongBox {
 				}
 			}
 		});
-
 	}
 
 	@Override
